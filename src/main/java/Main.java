@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -10,13 +11,16 @@ public class Main {
             int divisor = scanner.nextInt();
 
             if (divisor == 0) {
-                throw new ArithmeticException("Деление на ноль невозможно");
+                throw new ArithmeticException("\u001B[0mДеление на ноль невозможно");
             }
 
             new DivisionAlgorithm(dividend, divisor);
         } catch (ArithmeticException e) {
-            System.out.println("Ошибка: " + e.getMessage());
-        } finally {
+            System.out.println("\u001B[31mОшибка: " + e.getMessage());
+        } catch (InputMismatchException e) {
+            System.out.println("\u001B[31mОшибка: \u001B[0mВводить можно только целые числа");
+        }
+        finally {
             scanner.close();
         }
     }
